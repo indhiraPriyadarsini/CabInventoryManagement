@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Authorization;
 namespace CabInventoryManagement.Controllers
 {
 
+    [Route("[controller]")]
+    [ApiController]
     public class RegisterController : Controller
     {
         private readonly UserDBcontext _context;
@@ -40,6 +42,6 @@ namespace CabInventoryManagement.Controllers
             }
         }
 
-     
+
     }
 }

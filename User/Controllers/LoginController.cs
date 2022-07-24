@@ -9,6 +9,8 @@ using bcrypt = BCrypt.Net.BCrypt;
 
 namespace CabInventoryManagement.Controllers
 {
+  
+    [ApiController]
     public class LoginController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -26,7 +28,7 @@ namespace CabInventoryManagement.Controllers
         public async Task<ActionResult<Login>> Login([FromBody] Login login)
         {
             var DbUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == login.Email);
-            if(DbUser != null)
+            if (DbUser != null)
             {
                 if (!(bcrypt.Verify(login.Password, DbUser.Password)))
                 {
@@ -37,7 +39,7 @@ namespace CabInventoryManagement.Controllers
                     var Token = CreateToken(DbUser);
                     return Ok(Token);
                 }
-                
+
             }
             else
             {

@@ -12,9 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CabInventoryManagement.Migrations
 {
     //[DbContext(typeof(UserDBcontext))]
-    //[Migration("20220724093648_Booking...")]
-
-    partial class Booking
+    //[Migration("20220724184147_recreated -key")]
+    partial class recreatedkey
     {
 //        protected override void BuildTargetModel(ModelBuilder modelBuilder)
 //        {
@@ -33,20 +32,56 @@ namespace CabInventoryManagement.Migrations
 
 //                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"), 1L, 1);
 
+//                    b.Property<string>("Destination")
+//                        .IsRequired()
+//                        .HasColumnType("nvarchar(max)");
+
+//                    b.Property<string>("Email")
+//                        .IsRequired()
+//                        .HasColumnType("nvarchar(max)");
+
 //                    b.Property<string>("Location")
+//                        .IsRequired()
+//                        .HasColumnType("nvarchar(max)");
+
+//                    b.Property<string>("Onboarding")
 //                        .IsRequired()
 //                        .HasColumnType("nvarchar(max)");
 
 //                    b.Property<DateTime>("PickupTime")
 //                        .HasColumnType("datetime2");
 
-//                    b.Property<string>("Route")
-//                        .IsRequired()
-//                        .HasColumnType("nvarchar(max)");
-
 //                    b.HasKey("BookingId");
 
 //                    b.ToTable("Booking");
+//                });
+
+//            modelBuilder.Entity("CabInventoryManagement.Models.RouteDetails", b =>
+//                {
+//                    b.Property<int>("id")
+//                        .ValueGeneratedOnAdd()
+//                        .HasColumnType("int");
+
+//                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+//                    b.Property<string>("Destination")
+//                        .IsRequired()
+//                        .HasColumnType("nvarchar(max)");
+
+//                    b.Property<int>("NoOfAvailableCars")
+//                        .HasColumnType("int");
+
+//                    b.Property<string>("Onboarding")
+//                        .IsRequired()
+//                        .HasColumnType("nvarchar(max)");
+
+//                    b.Property<string>("TimeSlot")
+//                        .IsRequired()
+//                        .HasColumnType("nvarchar(max)");
+
+//                    b.HasKey("id");
+
+//                    b.ToTable("RouteDetails");
 //                });
 
 //            modelBuilder.Entity("User.Models.UserModel", b =>
@@ -62,7 +97,6 @@ namespace CabInventoryManagement.Migrations
 //                        .HasColumnType("nvarchar(max)");
 
 //                    b.Property<string>("Password")
-//                        .IsRequired()
 //                        .HasColumnType("nvarchar(max)");
 
 //                    b.Property<string>("Role")
@@ -78,5 +112,6 @@ namespace CabInventoryManagement.Migrations
 //                });
 //#pragma warning restore 612, 618
 //        }
-    }
+  }
+
 }

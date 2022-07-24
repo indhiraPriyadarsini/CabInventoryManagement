@@ -4,7 +4,7 @@
 
 namespace CabInventoryManagement.Migrations
 {
-    public partial class fkeycreate : Migration
+    public partial class RouteDetailskeyadded : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

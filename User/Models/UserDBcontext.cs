@@ -16,6 +16,8 @@ namespace CabInventoryManagement.Models
 
        public DbSet<Booking> Booking { get; set; }
        public DbSet<RouteDetails> RouteDetails { get; set; }
+       public DbSet<testClass> testClass { get; set; }
+        
 
     }
 }

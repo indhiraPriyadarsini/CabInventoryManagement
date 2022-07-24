@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CabInventoryManagement.Migrations
 {
     [DbContext(typeof(UserDBcontext))]
-    [Migration("20220724120419_created fkey")]
-    partial class createdfkey
+    [Migration("20220724184042_recreated key")]
+    partial class recreatedkey
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,25 +32,56 @@ namespace CabInventoryManagement.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"), 1L, 1);
 
+                    b.Property<string>("Destination")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Onboarding")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PickupTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Route")
+                    b.HasKey("BookingId");
+
+                    b.ToTable("Booking");
+                });
+
+            modelBuilder.Entity("CabInventoryManagement.Models.RouteDetails", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("Destination")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("NoOfAvailableCars")
                         .HasColumnType("int");
 
-                    b.HasKey("BookingId");
+                    b.Property<string>("Onboarding")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("UserId");
+                    b.Property<string>("TimeSlot")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Booking");
+                    b.HasKey("id");
+
+                    b.ToTable("RouteDetails");
                 });
 
             modelBuilder.Entity("User.Models.UserModel", b =>
@@ -66,7 +97,6 @@ namespace CabInventoryManagement.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
@@ -79,17 +109,6 @@ namespace CabInventoryManagement.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("CabInventoryManagement.Models.Booking", b =>
-                {
-                    b.HasOne("User.Models.UserModel", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CabInventoryManagement.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class BookingsController : Controller
     {
         private readonly UserDBcontext _context;
@@ -18,11 +20,11 @@ namespace CabInventoryManagement.Controllers
         {
             _context = context;
         }
-    
+
 
         [HttpPost]
         [Route("Booking")]
-        public async Task<ActionResult<Booking>> CabBooking([FromBody] Booking booking )
+        public async Task<ActionResult<Booking>> CabBooking([FromBody] Booking booking)
         {
 
             var user = _context.Users.Where(x => x.UserName == booking.Email);
@@ -34,12 +36,8 @@ namespace CabInventoryManagement.Controllers
             }
             else
             {
-                return BadRequest("User not Found");
+                return BadRequest("Booking Unsuccessfull");
             }
-            //var info = _context.Users.
-             //_context.Booking.Add(booking);
-             //await _context.SaveChangesAsync();
-             //return Ok("Booking Sucessfull");
 
         }
 

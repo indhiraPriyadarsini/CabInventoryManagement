@@ -1,4 +1,5 @@
-﻿using CabInventoryManagement.Models;
+﻿
+using CabInventoryManagement.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,8 @@ using User.Models;
 
 namespace CabInventoryManagement.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class AdminController : Controller
     {
         private readonly UserDBcontext _context;
@@ -47,15 +50,12 @@ namespace CabInventoryManagement.Controllers
         [Route("GetUserBookingDetails"), Authorize(Roles = "admin")]
         public async Task<ActionResult<List<Booking>>> GetBookedUsers()
         {
-            return Ok(_context.Booking.ToList<Booking>());
+            return Ok(_context.Booking.ToList());
         }
 
-        //[HttpGet]
-        //[Route("GetRouteDetails")]
-        //public async Task<ActionResult<List<RouteDetails>>> GetRouteDetails()
-        //{
-        //    return Ok(_context.RouteDetails.ToList<RouteDetails>());
-        //}
+
+
+
 
     }
 }

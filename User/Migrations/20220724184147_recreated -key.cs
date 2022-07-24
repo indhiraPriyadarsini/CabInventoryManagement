@@ -4,7 +4,7 @@
 
 namespace CabInventoryManagement.Migrations
 {
-    public partial class Booking : Migration
+    public partial class recreatedkey : Migration
     {
         //protected override void Up(MigrationBuilder migrationBuilder)
         //{
