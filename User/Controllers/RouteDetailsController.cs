@@ -44,12 +44,13 @@ namespace CabInventoryManagement.Controllers
 
 
         [HttpPost]
-        [Route("CreateRoutes"), Authorize(Roles = "admin")]
+        [Route("CreateRoutes")]
         public string CreateRoutes([FromBody] RouteDetails routeDetails)
         {
 
             try
             {
+
                 _context.RouteDetails.Add(routeDetails);
                 _context.SaveChangesAsync();
                 return ("Route Added Successfully!!");
@@ -62,38 +63,24 @@ namespace CabInventoryManagement.Controllers
 
 
         [HttpPut]
-        [Route("UpdateRouteDetails"), Authorize(Roles = "Admin")]
-        public async Task<ActionResult<RouteDetails>> UpdateRoute(int id, [FromBody] RouteDetails routeDetails)
-        {
-
-            var update = await _context.RouteDetails.FirstOrDefaultAsync(x => x.id == id);
-
-            update.Onboarding = routeDetails.Onboarding;
-            update.Destination = routeDetails.Destination;
-            update.TimeSlot = routeDetails.TimeSlot;
-            update.NoOfAvailableCars = routeDetails.NoOfAvailableCars;
-            await _context.SaveChangesAsync();
-            return Ok(update);
-
-
-        }
-
-        [HttpDelete]
-        [Route("DeleteRoutes/{id}"), Authorize(Roles = "Admin")]
-        public string DeleteRoute(int id)
+        [Route("UpdateRouteDetails/{id}"), Authorize(Roles = "admin")]
+        public string updateStatus([FromBody] RouteDetails routeDetails, int? id)
         {
             try
             {
-                var route = _context.RouteDetails.Where(e => e.id == id).SingleOrDefault();
-                _context.RouteDetails.Remove(route);
-                _context.SaveChanges();
+                var updateStatus = _context.RouteDetails.Where(e => e.id == id).SingleOrDefault();
 
-                return "Route with Id=" + id + " is deleted successfully";
+                updateStatus.Onboarding = routeDetails.Onboarding;
+                _context.SaveChanges();
+                //Send.Producer(status.Status);
+                return "Location id " + updateStatus.id + " Is Being Updated";
             }
+
             catch (Exception ex)
             {
-                return "Exception occurred: " + ex;
+                return "Error Occured " + ex;
             }
+
         }
 
     }

@@ -43,6 +43,12 @@ namespace CabInventoryManagement.Controllers
         public IEnumerable<UserModel> GetUsers()
         {
             var users = _context.Users.Where(x => x.Role == "User");
+            var user = users.Select(u => new
+            {
+                Id = u.UserId,
+                UserName = u.UserName,
+
+            });
             return (users);
         }
 

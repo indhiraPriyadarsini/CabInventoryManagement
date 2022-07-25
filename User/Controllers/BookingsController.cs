@@ -30,6 +30,7 @@ namespace CabInventoryManagement.Controllers
             var user = _context.Users.Where(x => x.UserName == booking.Email);
             if (user != null)
             {
+
                 _context.Booking.Add(booking);
                 await _context.SaveChangesAsync();
                 return Ok("Booking Successfull");

@@ -9,7 +9,7 @@ using bcrypt = BCrypt.Net.BCrypt;
 
 namespace CabInventoryManagement.Controllers
 {
-  
+
     [ApiController]
     public class LoginController : Controller
     {
@@ -37,6 +37,7 @@ namespace CabInventoryManagement.Controllers
                 else
                 {
                     var Token = CreateToken(DbUser);
+                    Send.Producer("Login success");
                     return Ok(Token);
                 }
 
